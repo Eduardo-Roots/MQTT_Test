@@ -1,8 +1,6 @@
-print("online")
-
 import paho.mqtt.client as mqtt
 
-import PySimpieGUI as sg
+import PySimpleGUI as sg
 
 layout = [[sg.Tex('Informe a temperatura: '),],
           [sg.ImputTex(key='temp')],
@@ -21,6 +19,6 @@ while True:
     else:
         randNumber = values['temp']
         client.publish("TemperaturaInterna", randNumber)
-        print("Acabado de publicar", (randNumber) "para o tópico TEMPERATURA")
+        print(f'Acabado de publicar {randNumber} para o tópico TEMPERATURA')
 
     window.close()
