@@ -3,11 +3,11 @@ from random import uniform
 import time
 
 broker = 'mqtt.eclipseprojects.io'
-client = mqtt.Client("TemperaturaExterna")
+client = mqtt.Client("TemperatureExternal")
 client.connect(broker)
 
 while True:
-    randNumber = uniform(25.0, 30,0)
-    client.publish("TEMPERATURA", randNumber)
-    print("Acabado de publicar", (randNumber) "para o tópico TEMPERATURA")
+    randNumber = uniform(22.0, 34.5)
+    client.publish("TemperatureExternal", randNumber)  # topic TemperatureExternal
+    print(f'Published {randNumber} in topic TEMPERATURE')
     time.sleep(5)
