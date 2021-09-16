@@ -2,24 +2,23 @@ import paho.mqtt.client as mqtt
 
 import PySimpleGUI as sg
 
-
-layout = [[sg.Text('Informe a temperatura: '),],
+layout = [[sg.Text('Inform a temperature: '), ],
           [sg.InputText(key='temp')],
-          [sg.Button('Enviar'), sg.Button('Sair')]
+          [sg.Button('Send'), sg.Button('Quit')]
           ]
-window = sg.Window("Ajuste de Temperatura", layout)
+window = sg.Window("Adjust of Temperature", layout)
 
 broker = 'mqtt.eclipseprojects.io'
-client = mqtt.Client("TemperaturaInterna")
+client = mqtt.Client("TemperatureInternal")
 client.connect(broker)
 
 while True:
     event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'sair':
+    if event == sg.WIN_CLOSED or event == 'Quit':
         break
     else:
         randNumber = values['temp']
-        client.publish("TemperaturaInterna", randNumber)
-        print(f'Acabado de publicar {randNumber} para o tópico TEMPERATURA')
+        client.publish("TemperatureInternal", randNumber)   # topic TemperatureInternal
+        print(f'Published {randNumber} in topic TEMPERATURE')
 
     window.close()
