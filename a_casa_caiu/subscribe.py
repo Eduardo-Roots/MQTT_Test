@@ -3,15 +3,16 @@ import time
 
 msg = ''
 def on_messagem(client, userdata, message):
-    print("Mensagem recebida: ", (message.payload.decode('utf-8'))"")
+    print(f'Message received: {message.payload.decode("utf-8")}')
 
-nome = input("Nome do dispositivo: ")
+nome = input("Name of device: ")
 broker = 'mqtt.eclipseprojects.io'
 client = mqtt.Client(nome)
 client.connect(broker)
 
 client.loop_start()
-client.subscribe("TemperaturaInterna")
+client.subscribe("TemperatureInternal")     # topic publisher01
+client.subscribe("TemperatureExternal")     # topic publisher02
 client.on_message = on_messagem
 
 time.sleep(120)
